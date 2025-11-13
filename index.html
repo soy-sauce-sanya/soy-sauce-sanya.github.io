@@ -4,85 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio website showcasing my projects and skills">
-    <title>My Portfolio</title>
+    <title>Ubuntu Desktop - Sanya's Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">Portfolio</div>
-            <button class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Hello, I'm <span class="highlight">Your Name</span></h1>
-            <p class="hero-subtitle">Web Developer | Designer | Creator</p>
-            <p class="hero-description">
-                I create beautiful and functional websites that make a difference.
-            </p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+    <!-- Top Panel (Ubuntu style) -->
+    <div class="top-panel">
+        <div class="panel-left">
+            <button class="activities-btn" id="activitiesBtn">Activities</button>
+            <div class="app-menu" id="appMenu">
+                <span class="current-app">Desktop</span>
             </div>
         </div>
-        <div class="scroll-down">
-            <a href="#about"><i class="fas fa-chevron-down"></i></a>
+        <div class="panel-center">
+            <div class="clock" id="clock">Mon Nov 13 12:00</div>
         </div>
-    </section>
+        <div class="panel-right">
+            <div class="system-icons">
+                <i class="fas fa-volume-up"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters"></i>
+                <button class="power-btn" id="powerBtn">
+                    <i class="fas fa-power-off"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
+    <!-- Desktop Area -->
+    <div class="desktop" id="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icon" data-window="about">
+            <i class="fas fa-folder"></i>
+            <span>About Me</span>
+        </div>
+        <div class="desktop-icon" data-window="skills">
+            <i class="fas fa-folder"></i>
+            <span>Skills</span>
+        </div>
+        <div class="desktop-icon" data-window="projects">
+            <i class="fas fa-folder"></i>
+            <span>Projects</span>
+        </div>
+        <div class="desktop-icon" data-window="contact">
+            <i class="fas fa-folder"></i>
+            <span>Contact</span>
+        </div>
+        <div class="desktop-icon" data-window="terminal">
+            <i class="fas fa-terminal"></i>
+            <span>Terminal</span>
+        </div>
+    </div>
+
+    <!-- Windows -->
+    <!-- About Window -->
+    <div class="window" id="about-window" data-window-id="about">
+        <div class="window-titlebar">
+            <div class="window-title">About Me</div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn"><i class="fas fa-minus"></i></button>
+                <button class="window-btn maximize-btn"><i class="fas fa-square"></i></button>
+                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="window-content">
             <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        hi! my name is Sanya. 
-                    </p>
-                    <p>
-                        When I'm not coding, you can find me exploring new technologies, contributing
-                        to open-source projects, or enjoying a good cup of coffee while reading about
-                        the latest tech trends.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <h3>5+</h3>
-                            <p>Years Experience</p>
-                        </div>
-                        <div class="stat">
-                            <h3>50+</h3>
-                            <p>Projects Completed</p>
-                        </div>
-                        <div class="stat">
-                            <h3>30+</h3>
-                            <p>Happy Clients</p>
-                        </div>
+                <h2>Hi! My name is Sanya.</h2>
+                <p>
+                    I'm a passionate web developer and designer who loves creating beautiful
+                    and functional websites. I specialize in modern web technologies and
+                    always strive to deliver exceptional user experiences.
+                </p>
+                <p>
+                    When I'm not coding, you can find me exploring new technologies, contributing
+                    to open-source projects, or enjoying a good cup of coffee while reading about
+                    the latest tech trends.
+                </p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>5+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="stat">
+                        <h3>50+</h3>
+                        <p>Projects Completed</p>
+                    </div>
+                    <div class="stat">
+                        <h3>30+</h3>
+                        <p>Happy Clients</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">My Skills</h2>
+    <!-- Skills Window -->
+    <div class="window" id="skills-window" data-window-id="skills">
+        <div class="window-titlebar">
+            <div class="window-title">Skills</div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn"><i class="fas fa-minus"></i></button>
+                <button class="window-btn maximize-btn"><i class="fas fa-square"></i></button>
+                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="window-content">
             <div class="skills-grid">
                 <div class="skill-card">
                     <div class="skill-icon">
@@ -128,19 +155,23 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
+    <!-- Projects Window -->
+    <div class="window" id="projects-window" data-window-id="projects">
+        <div class="window-titlebar">
+            <div class="window-title">Projects</div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn"><i class="fas fa-minus"></i></button>
+                <button class="window-btn maximize-btn"><i class="fas fa-square"></i></button>
+                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="window-content">
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
                         <img src="https://via.placeholder.com/400x300/667eea/ffffff?text=Project+1" alt="Project 1">
-                        <div class="project-overlay">
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
                     </div>
                     <div class="project-info">
                         <h3>E-Commerce Platform</h3>
@@ -155,9 +186,6 @@
                 <div class="project-card">
                     <div class="project-image">
                         <img src="https://via.placeholder.com/400x300/f093fb/ffffff?text=Project+2" alt="Project 2">
-                        <div class="project-overlay">
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
                     </div>
                     <div class="project-info">
                         <h3>Task Management App</h3>
@@ -172,9 +200,6 @@
                 <div class="project-card">
                     <div class="project-image">
                         <img src="https://via.placeholder.com/400x300/4facfe/ffffff?text=Project+3" alt="Project 3">
-                        <div class="project-overlay">
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
                     </div>
                     <div class="project-info">
                         <h3>Portfolio Generator</h3>
@@ -188,17 +213,24 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="contact-intro">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-            </p>
+    <!-- Contact Window -->
+    <div class="window" id="contact-window" data-window-id="contact">
+        <div class="window-titlebar">
+            <div class="window-title">Contact</div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn"><i class="fas fa-minus"></i></button>
+                <button class="window-btn maximize-btn"><i class="fas fa-square"></i></button>
+                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="window-content">
             <div class="contact-content">
                 <div class="contact-info">
+                    <h2>Get In Touch</h2>
+                    <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <div>
@@ -221,9 +253,9 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="https://github.com/soy-sauce-sanya" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/tsoy-choi-sanya-aleksandr/" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://scholar.google.com/citations?user=2V0IH5QAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fas fa-graduation-cap"></i></a>
+                        <a href="https://github.com/soy-sauce-sanya" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/tsoy-choi-sanya-aleksandr/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://scholar.google.com/citations?user=2V0IH5QAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="social-link" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
                     </div>
                 </div>
                 <form class="contact-form">
@@ -243,15 +275,63 @@
                 </form>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Your Name. All rights reserved.</p>
-            <p>Built with <i class="fas fa-heart"></i> using GitHub Pages</p>
+    <!-- Terminal Window -->
+    <div class="window terminal-window" id="terminal-window" data-window-id="terminal">
+        <div class="window-titlebar">
+            <div class="window-title">sanya@ubuntu: ~</div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn"><i class="fas fa-minus"></i></button>
+                <button class="window-btn maximize-btn"><i class="fas fa-square"></i></button>
+                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
+            </div>
         </div>
-    </footer>
+        <div class="window-content terminal-content">
+            <div class="terminal-output" id="terminalOutput">
+                <div class="terminal-line">Welcome to Sanya's Portfolio Terminal!</div>
+                <div class="terminal-line">Type 'help' for available commands.</div>
+                <div class="terminal-line">&nbsp;</div>
+            </div>
+            <div class="terminal-input-line">
+                <span class="terminal-prompt">sanya@ubuntu:~$</span>
+                <input type="text" class="terminal-input" id="terminalInput" autocomplete="off">
+            </div>
+        </div>
+    </div>
+
+    <!-- Dock -->
+    <div class="dock" id="dock">
+        <div class="dock-item" data-window="about" title="About Me">
+            <i class="fas fa-user"></i>
+        </div>
+        <div class="dock-item" data-window="skills" title="Skills">
+            <i class="fas fa-code"></i>
+        </div>
+        <div class="dock-item" data-window="projects" title="Projects">
+            <i class="fas fa-folder-open"></i>
+        </div>
+        <div class="dock-item" data-window="contact" title="Contact">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <div class="dock-separator"></div>
+        <div class="dock-item" data-window="terminal" title="Terminal">
+            <i class="fas fa-terminal"></i>
+        </div>
+    </div>
+
+    <!-- Activities Overview -->
+    <div class="activities-overview" id="activitiesOverview">
+        <div class="activities-search">
+            <input type="text" placeholder="Type to search..." id="activitiesSearch">
+        </div>
+        <div class="activities-windows">
+            <h3>Open Windows</h3>
+            <div class="activities-window-grid" id="activitiesWindowGrid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
