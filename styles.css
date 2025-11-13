@@ -484,6 +484,12 @@ section {
     font-size: 1.2rem;
     transition: var(--transition);
     border: 2px solid var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.social-link i {
+    pointer-events: none;
 }
 
 .social-link:hover {
