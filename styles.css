@@ -738,65 +738,345 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Desktop area optimizations */
     .desktop {
-        grid-template-columns: repeat(auto-fill, 80px);
-        grid-auto-rows: 90px;
-        gap: 10px;
-        padding: 10px;
+        grid-template-columns: repeat(auto-fill, 90px);
+        grid-auto-rows: 100px;
+        gap: 15px;
+        padding: 15px;
+        padding-bottom: 80px; /* Space for dock */
     }
 
+    .desktop-icon {
+        width: 90px;
+        height: 100px;
+        padding: 12px;
+    }
+
+    .desktop-icon i {
+        font-size: 52px;
+    }
+
+    .desktop-icon span {
+        font-size: 13px;
+    }
+
+    /* Window optimizations for mobile */
     .window {
-        min-width: 300px;
-        width: 95vw !important;
+        min-width: 100vw !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        min-height: calc(100vh - 32px) !important;
+        height: calc(100vh - 32px) !important;
+        max-height: calc(100vh - 32px) !important;
+        top: 32px !important;
+        left: 0 !important;
+        border-radius: 0;
     }
 
+    .window.active {
+        position: fixed;
+    }
+
+    .window-content {
+        padding: 15px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Dock optimizations */
     .dock {
-        padding: 5px 10px;
-        gap: 5px;
+        padding: 8px 12px;
+        gap: 8px;
+        border-radius: 0;
+        width: 100%;
+        left: 0;
+        transform: none;
     }
 
     .dock-item {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .dock-item i {
+        font-size: 22px;
+    }
+
+    /* Hide clock on mobile to save space */
+    .panel-center {
+        display: none;
+    }
+
+    /* Top panel adjustments */
+    .top-panel {
+        padding: 0 8px;
+    }
+
+    .system-icons {
+        gap: 10px;
+    }
+
+    .system-icons i {
+        font-size: 14px;
+    }
+
+    /* Activities overview */
+    .activities-overview {
+        padding: 60px 15px;
+    }
+
+    .activities-search input {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    .activities-window-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Content grids */
+    .skills-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* About stats */
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Form elements - larger touch targets */
+    .form-group input,
+    .form-group textarea {
+        padding: 14px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    .btn {
+        padding: 14px 28px;
+        font-size: 16px;
+        min-height: 44px;
+    }
+
+    /* Project cards */
+    .project-card {
+        margin-bottom: 10px;
+    }
+
+    .project-image {
+        height: 180px;
+    }
+
+    /* Contact items */
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    /* Social links - larger touch targets */
+    .social-link {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+
+    /* Terminal improvements */
+    .terminal-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    .terminal-content {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Top panel */
+    .top-panel {
+        font-size: 12px;
+        padding: 0 6px;
+        height: 32px;
+    }
+
+    .activities-btn {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    /* Desktop icons */
+    .desktop {
+        grid-template-columns: repeat(auto-fill, 80px);
+        grid-auto-rows: 90px;
+        gap: 12px;
+        padding: 12px;
+        padding-bottom: 75px;
+    }
+
+    .desktop-icon {
+        width: 80px;
+        height: 90px;
+    }
+
+    .desktop-icon i {
+        font-size: 44px;
+    }
+
+    .desktop-icon span {
+        font-size: 12px;
+    }
+
+    /* Window controls */
+    .window-titlebar {
+        padding: 8px 10px;
+    }
+
+    .window-title {
+        font-size: 13px;
+    }
+
+    .window-btn {
+        width: 18px;
+        height: 18px;
+        font-size: 9px;
+    }
+
+    .window-content {
+        padding: 12px;
+    }
+
+    /* Text sizing */
+    .about-content h2,
+    .contact-info h2 {
+        font-size: 1.5rem;
+    }
+
+    .skill-card h3,
+    .project-info h3 {
+        font-size: 1rem;
+    }
+
+    /* Dock */
+    .dock {
+        padding: 6px 8px;
+        gap: 6px;
+    }
+
+    .dock-item {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        min-height: 42px;
     }
 
     .dock-item i {
         font-size: 20px;
     }
 
-    .panel-center {
-        display: none;
-    }
-
+    /* Activities */
     .activities-overview {
-        padding: 80px 20px;
+        padding: 50px 12px;
     }
 
-    .skills-grid,
-    .projects-grid {
-        grid-template-columns: 1fr;
+    .activities-search input {
+        font-size: 16px;
+        padding: 12px;
     }
 
-    .contact-content {
-        grid-template-columns: 1fr;
+    /* System icons */
+    .system-icons {
+        gap: 8px;
+    }
+
+    .system-icons i {
+        font-size: 13px;
+    }
+
+    .power-btn {
+        padding: 4px 6px;
     }
 }
 
-@media (max-width: 480px) {
-    .top-panel {
+/* Landscape mode optimization for mobile */
+@media (max-width: 896px) and (orientation: landscape) {
+    .desktop {
+        grid-template-columns: repeat(auto-fill, 70px);
+        grid-auto-rows: 80px;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .desktop-icon {
+        width: 70px;
+        height: 80px;
+    }
+
+    .desktop-icon i {
+        font-size: 36px;
+    }
+
+    .desktop-icon span {
         font-size: 11px;
     }
 
-    .window-titlebar {
-        padding: 6px 8px;
+    .dock {
+        padding: 4px 8px;
     }
 
-    .window-title {
-        font-size: 12px;
+    .dock-item {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        min-height: 38px;
     }
 
+    .dock-item i {
+        font-size: 18px;
+    }
+}
+
+/* Touch-specific optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Ensure all interactive elements are at least 44x44px */
     .window-btn {
-        width: 16px;
-        height: 16px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .activities-btn,
+    .power-btn {
+        min-height: 32px;
+        padding: 6px 12px;
+    }
+
+    /* Remove hover effects on touch devices */
+    .desktop-icon:hover,
+    .dock-item:hover,
+    .skill-card:hover,
+    .project-card:hover {
+        transform: none;
+    }
+
+    /* Add active states for touch feedback */
+    .desktop-icon:active {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .dock-item:active {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(0.95);
+    }
+
+    .btn:active {
+        transform: scale(0.98);
     }
 }

@@ -6,6 +6,16 @@ let windowZIndex = 1000;
 let isDragging = false;
 let dragOffset = { x: 0, y: 0 };
 
+// Mobile detection
+const isMobile = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+        || window.innerWidth <= 768;
+};
+
+const isTouchDevice = () => {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+};
+
 // Update clock
 function updateClock() {
     const now = new Date();
@@ -35,14 +45,23 @@ function openWindow(windowId) {
         return;
     }
 
-    // Position window in center or cascaded
-    const windows = document.querySelectorAll('.window.active');
-    const offset = windows.length * 30;
+    // On mobile, windows are always full screen (handled by CSS)
+    // On desktop, position window in center or cascaded
+    if (!isMobile()) {
+        const windows = document.querySelectorAll('.window.active');
+        const offset = windows.length * 30;
 
-    window.style.left = `${100 + offset}px`;
-    window.style.top = `${100 + offset}px`;
-    window.style.width = '700px';
-    window.style.height = '500px';
+        window.style.left = `${100 + offset}px`;
+        window.style.top = `${100 + offset}px`;
+        window.style.width = '700px';
+        window.style.height = '500px';
+    } else {
+        // On mobile, ensure window takes full screen
+        window.style.left = '0';
+        window.style.top = '32px';
+        window.style.width = '100vw';
+        window.style.height = 'calc(100vh - 32px)';
+    }
 
     window.classList.add('active');
     focusWindow(window);
@@ -89,6 +108,11 @@ function focusWindow(window) {
 
 // Dragging functionality
 function setupWindowDragging() {
+    // Disable dragging on mobile devices
+    if (isMobile()) {
+        return;
+    }
+
     document.querySelectorAll('.window').forEach(window => {
         const titlebar = window.querySelector('.window-titlebar');
 
@@ -147,10 +171,30 @@ function setupWindowControls() {
 // Desktop icons
 function setupDesktopIcons() {
     document.querySelectorAll('.desktop-icon').forEach(icon => {
+        // Desktop: double-click
         icon.addEventListener('dblclick', () => {
             const windowId = icon.getAttribute('data-window');
             openWindow(windowId);
         });
+
+        // Mobile: single tap (touch)
+        if (isTouchDevice()) {
+            let lastTap = 0;
+            icon.addEventListener('touchend', (e) => {
+                const currentTime = new Date().getTime();
+                const tapLength = currentTime - lastTap;
+
+                // Double tap detection (within 300ms)
+                if (tapLength < 300 && tapLength > 0) {
+                    e.preventDefault();
+                    const windowId = icon.getAttribute('data-window');
+                    openWindow(windowId);
+                    lastTap = 0;
+                } else {
+                    lastTap = currentTime;
+                }
+            });
+        }
     });
 }
 
@@ -395,6 +439,54 @@ function setupKeyboardShortcuts() {
     });
 }
 
+// Handle viewport changes (orientation, resize)
+function setupViewportHandler() {
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            // Reposition windows on mobile after orientation change
+            if (isMobile()) {
+                document.querySelectorAll('.window.active').forEach(window => {
+                    window.style.left = '0';
+                    window.style.top = '32px';
+                    window.style.width = '100vw';
+                    window.style.height = 'calc(100vh - 32px)';
+                });
+            }
+        }, 250);
+    });
+}
+
+// Prevent default touch behaviors that might interfere
+function setupTouchOptimizations() {
+    if (!isTouchDevice()) return;
+
+    // Prevent pull-to-refresh on mobile browsers
+    let touchStartY = 0;
+    document.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+        const touchY = e.touches[0].clientY;
+        const touchYDelta = touchY - touchStartY;
+
+        // Prevent pull-to-refresh when at top of page
+        if (touchYDelta > 0 && window.scrollY === 0) {
+            // Allow scrolling within window content
+            if (!e.target.closest('.window-content')) {
+                e.preventDefault();
+            }
+        }
+    }, { passive: false });
+
+    // Add momentum scrolling for iOS
+    document.querySelectorAll('.window-content').forEach(content => {
+        content.style.webkitOverflowScrolling = 'touch';
+    });
+}
+
 // Initialize everything
 function init() {
     setupWindowDragging();
@@ -406,11 +498,18 @@ function init() {
     setupContactForm();
     setupPowerButton();
     setupKeyboardShortcuts();
+    setupViewportHandler();
+    setupTouchOptimizations();
 
-    // Open About window by default
+    // Open About window by default (with delay for smooth load)
     setTimeout(() => {
         openWindow('about');
     }, 500);
+
+    // Log mobile status for debugging
+    if (isMobile()) {
+        console.log('%c📱 Mobile mode activated', 'font-size: 12px; color: #E95420;');
+    }
 }
 
 // Start when DOM is ready
