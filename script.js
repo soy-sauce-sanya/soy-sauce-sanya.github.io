@@ -301,9 +301,10 @@ function setupTerminal() {
   ls         - List available sections`;
         },
         about: () => {
-            return `Sanya - Web Developer & Designer
-I'm passionate about creating beautiful and functional websites.
-Specializing in modern web technologies.`;
+            return `Hi! My name is Sanya.
+I'm an AI engineer and I'm passionate about robotics.
+I'm coming from Uzbekistan and I'm currently working in China.
+I have graduated from Tsinghua University.`;
         },
         skills: () => {
             return `Technical Skills:
