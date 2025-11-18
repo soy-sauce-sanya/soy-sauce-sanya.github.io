@@ -259,8 +259,8 @@ function updateActivitiesGrid() {
 
     const windows = [
         { id: 'about', title: 'About Me', description: 'Learn more about Sanya' },
-        { id: 'skills', title: 'Skills', description: 'Technical skills and expertise' },
-        { id: 'projects', title: 'Projects', description: 'Featured projects and work' },
+        { id: 'resume', title: 'Resume', description: 'Technical skills and expertise' },
+        { id: 'side-projects', title: 'Side-Projects', description: 'Featured projects and work' },
         { id: 'contact', title: 'Contact', description: 'Get in touch' },
         { id: 'terminal', title: 'Terminal', description: 'Command line interface' }
     ];
@@ -292,7 +292,7 @@ function setupTerminal() {
             return `Available commands:
   help       - Show this help message
   about      - Information about Sanya
-  skills     - List technical skills
+  resume     - List technical skills
   projects   - Show projects
   contact    - Display contact information
   clear      - Clear terminal
@@ -305,6 +305,13 @@ function setupTerminal() {
 I'm an AI engineer and I'm passionate about robotics.
 I'm coming from Uzbekistan and I'm currently working in China.
 I have graduated from Tsinghua University.`;
+        },
+        resume: () => {
+            return `Technical Skills:
+• Frontend: HTML, CSS, JavaScript, React, Vue.js
+• Backend: Node.js, Python, PHP
+• Databases: MySQL, PostgreSQL, MongoDB
+• Tools: Git, GitHub, GitLab, Figma, Adobe XD`;
         },
         skills: () => {
             return `Technical Skills:
@@ -336,7 +343,7 @@ LinkedIn: linkedin.com/in/tsoy-choi-sanya-aleksandr`;
             return new Date().toString();
         },
         ls: () => {
-            return `about  skills  projects  contact`;
+            return `about  resume  side-projects  contact`;
         }
     };
 
