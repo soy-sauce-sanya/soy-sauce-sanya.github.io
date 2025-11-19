@@ -39,13 +39,13 @@
             <i class="fas fa-folder"></i>
             <span>About Me</span>
         </div>
-        <div class="desktop-icon" data-window="skills">
+        <div class="desktop-icon" data-window="resume">
             <i class="fas fa-folder"></i>
-            <span>Skills</span>
+            <span>Resume</span>
         </div>
-        <div class="desktop-icon" data-window="projects">
+        <div class="desktop-icon" data-window="side-projects">
             <i class="fas fa-folder"></i>
-            <span>Projects</span>
+            <span>Side-Projects</span>
         </div>
         <div class="desktop-icon" data-window="contact">
             <i class="fas fa-folder"></i>
@@ -63,49 +63,55 @@
         <div class="window-titlebar">
             <div class="window-title">About Me</div>
             <div class="window-controls">
+                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
                 <button class="window-btn minimize-btn"><i class="fas fa-minus"></i></button>
                 <button class="window-btn maximize-btn"><i class="fas fa-square"></i></button>
-                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
             </div>
         </div>
         <div class="window-content">
             <div class="about-content">
-                <h2>Hi! My name is Aleksandr (Sanya).</h2>
-                <p>
-                    i'm an ai engineer and i'm passionate about robotics
-                    i'm coming from Uzbekistan and i'm currently working in China
-                    i have graduated from Tsinghua University.
-                </p>
-                <p>
-                    when i'm not coding, you can find me learning new languages (not programming languages, though) 
-                    or playing music. i enjoy working out.
-                </p>
-                <div class="about-stats">
-                    <div class="stat">
-                        <h3>5+</h3>
-                        <p>Years Experience</p>
+                <div class="about-text">
+                    <h2>Hi! My name is Aleksandr (Sanya).</h2>
+                    <p>
+                        i'm an ai engineer and i'm passionate about robotics
+                        i'm coming from Uzbekistan and i'm currently working in China
+                        i have graduated from Tsinghua University.
+                    </p>
+                    <p>
+                        when i'm not coding, you can find me learning new languages (not programming languages, though)
+                        or playing music. i enjoy working out.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>5+</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h3>50+</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat">
+                            <h3>30+</h3>
+                            <p>Happy Clients</p>
+                        </div>
                     </div>
-                    <div class="stat">
-                        <h3>50+</h3>
-                        <p>Projects Completed</p>
-                    </div>
-                    <div class="stat">
-                        <h3>30+</h3>
-                        <p>Happy Clients</p>
-                    </div>
+                </div>
+                <div class="about-image">
+                    <!-- Replace the src attribute below with your image path -->
+                    <img src="your-image-path.jpg" alt="About Me Image" id="aboutImage">
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Skills Window -->
-    <div class="window" id="skills-window" data-window-id="skills">
+    <!-- Resume Window -->
+    <div class="window" id="resume-window" data-window-id="resume">
         <div class="window-titlebar">
-            <div class="window-title">Skills</div>
+            <div class="window-title">Resume</div>
             <div class="window-controls">
+                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
                 <button class="window-btn minimize-btn"><i class="fas fa-minus"></i></button>
                 <button class="window-btn maximize-btn"><i class="fas fa-square"></i></button>
-                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
             </div>
         </div>
         <div class="window-content">
@@ -156,14 +162,14 @@
         </div>
     </div>
 
-    <!-- Projects Window -->
-    <div class="window" id="projects-window" data-window-id="projects">
+    <!-- Side-Projects Window -->
+    <div class="window" id="side-projects-window" data-window-id="side-projects">
         <div class="window-titlebar">
-            <div class="window-title">Projects</div>
+            <div class="window-title">Side-Projects</div>
             <div class="window-controls">
+                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
                 <button class="window-btn minimize-btn"><i class="fas fa-minus"></i></button>
                 <button class="window-btn maximize-btn"><i class="fas fa-square"></i></button>
-                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
             </div>
         </div>
         <div class="window-content">
@@ -219,9 +225,9 @@
         <div class="window-titlebar">
             <div class="window-title">Contact</div>
             <div class="window-controls">
+                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
                 <button class="window-btn minimize-btn"><i class="fas fa-minus"></i></button>
                 <button class="window-btn maximize-btn"><i class="fas fa-square"></i></button>
-                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
             </div>
         </div>
         <div class="window-content">
@@ -255,11 +261,10 @@
                         <a href="https://github.com/soy-sauce-sanya" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
                         <a href="https://www.linkedin.com/in/tsoy-choi-sanya-aleksandr/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                         <a href="https://scholar.google.com/citations?user=2V0IH5QAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="social-link" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                        <a href="https://twitter.com/your-twitter" target="_blank" rel="noopener noreferrer" class="social-link" title="Twitter (X)"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://youtube.com/@your-youtube" target="_blank" rel="noopener noreferrer" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://instagram.com/your-instagram" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
-                </div>
-                <div class="contact-image">
-                    <!-- Replace the src attribute below with your image path -->
-                    <img src="your-image-path.jpg" alt="Contact Image" id="contactImage">
                 </div>
             </div>
         </div>
@@ -270,9 +275,9 @@
         <div class="window-titlebar">
             <div class="window-title">sanya@ubuntu: ~</div>
             <div class="window-controls">
+                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
                 <button class="window-btn minimize-btn"><i class="fas fa-minus"></i></button>
                 <button class="window-btn maximize-btn"><i class="fas fa-square"></i></button>
-                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
             </div>
         </div>
         <div class="window-content terminal-content">
@@ -293,10 +298,10 @@
         <div class="dock-item" data-window="about" title="About Me">
             <i class="fas fa-user"></i>
         </div>
-        <div class="dock-item" data-window="skills" title="Skills">
+        <div class="dock-item" data-window="resume" title="Resume">
             <i class="fas fa-code"></i>
         </div>
-        <div class="dock-item" data-window="projects" title="Projects">
+        <div class="dock-item" data-window="side-projects" title="Side-Projects">
             <i class="fas fa-folder-open"></i>
         </div>
         <div class="dock-item" data-window="contact" title="Contact">
