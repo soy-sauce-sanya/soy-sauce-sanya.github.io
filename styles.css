@@ -539,6 +539,7 @@ body {
     background: #300A24;
     color: #FFFFFF;
     font-family: 'Ubuntu Mono', 'Courier New', monospace;
+    font-size: 14px;
     padding: 15px;
     overflow-y: auto;
 }
