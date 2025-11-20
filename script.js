@@ -284,9 +284,9 @@ function updateActivitiesGrid() {
 function setupTerminal() {
     const terminalInput = document.getElementById('terminalInput');
     const terminalOutput = document.getElementById('terminalOutput');
-    const terminalContent = terminalOutput.parentElement;
-
     if (!terminalInput || !terminalOutput) return;
+
+    const terminalContent = terminalOutput.parentElement;
 
     const commands = {
         help: () => {
