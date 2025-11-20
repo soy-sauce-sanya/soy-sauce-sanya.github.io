@@ -284,6 +284,7 @@ function updateActivitiesGrid() {
 function setupTerminal() {
     const terminalInput = document.getElementById('terminalInput');
     const terminalOutput = document.getElementById('terminalOutput');
+    const terminalContent = terminalOutput.parentElement;
 
     if (!terminalInput || !terminalOutput) return;
 
@@ -389,7 +390,7 @@ LinkedIn: linkedin.com/in/tsoy-choi-sanya-aleksandr`;
 
             // Clear input and scroll to bottom
             terminalInput.value = '';
-            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            terminalContent.scrollTop = terminalContent.scrollHeight;
         }
     });
 
