@@ -323,9 +323,9 @@ I have graduated from Tsinghua University.`;
         },
         projects: () => {
             return `Featured Projects:
-1. E-Commerce Platform (React, Node.js, MongoDB)
-2. Task Management App (Vue.js, Firebase, Tailwind)
-3. Portfolio Generator (JavaScript, CSS, API)`;
+1. Anki Deck TTS (HTML, CSS, Python)
+   Web: https://soy-sauce-sanya.github.io/ankideck-tts/
+   Repo: https://github.com/soy-sauce-sanya/ankideck-tts`;
         },
         contact: () => {
             return `Contact Information:
