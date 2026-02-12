@@ -38,16 +38,16 @@ setInterval(updateClock, 1000);
 function openWindow(windowId) {
     // Intercept resume window to open PDF instead
     if (windowId === 'resume') {
-        window.open('resume.pdf', '_blank', 'noopener,noreferrer');
+        window.open('resume/CV_Sanya_Choi_EN.pdf', '_blank', 'noopener,noreferrer');
         return;
     }
 
-    const window = document.getElementById(`${windowId}-window`);
-    if (!window) return;
+    const targetWindow = document.getElementById(`${windowId}-window`);
+    if (!targetWindow) return;
 
     // If window is already open, just focus it
-    if (window.classList.contains('active')) {
-        focusWindow(window);
+    if (targetWindow.classList.contains('active')) {
+        focusWindow(targetWindow);
         return;
     }
 
@@ -57,20 +57,20 @@ function openWindow(windowId) {
         const windows = document.querySelectorAll('.window.active');
         const offset = windows.length * 30;
 
-        window.style.left = `${100 + offset}px`;
-        window.style.top = `${100 + offset}px`;
-        window.style.width = '700px';
-        window.style.height = '500px';
+        targetWindow.style.left = `${100 + offset}px`;
+        targetWindow.style.top = `${100 + offset}px`;
+        targetWindow.style.width = '700px';
+        targetWindow.style.height = '500px';
     } else {
         // On mobile, ensure window takes full screen
-        window.style.left = '0';
-        window.style.top = '32px';
-        window.style.width = '100vw';
-        window.style.height = 'calc(100vh - 32px)';
+        targetWindow.style.left = '0';
+        targetWindow.style.top = '32px';
+        targetWindow.style.width = '100vw';
+        targetWindow.style.height = 'calc(100vh - 32px)';
     }
 
-    window.classList.add('active');
-    focusWindow(window);
+    targetWindow.classList.add('active');
+    focusWindow(targetWindow);
 
     // Update dock
     updateDock();
@@ -209,11 +209,11 @@ function setupDock() {
     document.querySelectorAll('.dock-item').forEach(item => {
         item.addEventListener('click', () => {
             const windowId = item.getAttribute('data-window');
-            const window = document.getElementById(`${windowId}-window`);
+            const targetWindow = document.getElementById(`${windowId}-window`);
 
-            if (window.classList.contains('active')) {
+            if (targetWindow && targetWindow.classList.contains('active')) {
                 // If window is active, minimize it
-                minimizeWindow(window);
+                minimizeWindow(targetWindow);
             } else {
                 // Otherwise, open or restore it
                 openWindow(windowId);
@@ -225,9 +225,9 @@ function setupDock() {
 function updateDock() {
     document.querySelectorAll('.dock-item').forEach(item => {
         const windowId = item.getAttribute('data-window');
-        const window = document.getElementById(`${windowId}-window`);
+        const targetWindow = document.getElementById(`${windowId}-window`);
 
-        if (window && window.classList.contains('active')) {
+        if (targetWindow && targetWindow.classList.contains('active')) {
             item.classList.add('active');
         } else {
             item.classList.remove('active');
