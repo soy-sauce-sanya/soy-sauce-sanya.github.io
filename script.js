@@ -36,6 +36,12 @@ setInterval(updateClock, 1000);
 
 // Window management functions
 function openWindow(windowId) {
+    // Intercept resume window to open PDF instead
+    if (windowId === 'resume') {
+        window.open('resume.pdf', '_blank', 'noopener,noreferrer');
+        return;
+    }
+
     const window = document.getElementById(`${windowId}-window`);
     if (!window) return;
 
