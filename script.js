@@ -56,11 +56,16 @@ function openWindow(windowId) {
     if (!isMobile()) {
         const windows = document.querySelectorAll('.window.active');
         const offset = windows.length * 30;
+        const winWidth = 700;
+        const winHeight = 500;
 
-        targetWindow.style.left = `${100 + offset}px`;
-        targetWindow.style.top = `${100 + offset}px`;
-        targetWindow.style.width = '700px';
-        targetWindow.style.height = '500px';
+        const left = (window.innerWidth - winWidth) / 2 + offset;
+        const top = (window.innerHeight - winHeight) / 2 + offset;
+
+        targetWindow.style.left = `${Math.max(0, left)}px`;
+        targetWindow.style.top = `${Math.max(32, top)}px`;
+        targetWindow.style.width = `${winWidth}px`;
+        targetWindow.style.height = `${winHeight}px`;
     } else {
         // On mobile, ensure window takes full screen
         targetWindow.style.left = '0';
