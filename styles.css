@@ -553,6 +553,15 @@ body {
     line-height: 1.5;
 }
 
+.terminal-command-line,
+.terminal-output-line {
+    display: block;
+}
+
+.terminal-output-line {
+    white-space: pre-wrap;
+}
+
 .terminal-input-line {
     display: flex;
     align-items: center;

@@ -410,7 +410,7 @@ function setupTerminal() {
             return getAboutInfoFromWindow();
         },
         resume: () => {
-            return `Resume:
+            return `Resume PDF:
 resume/CV_Sanya_Choi_EN.pdf`;
         },
         skills: () => {
@@ -442,12 +442,15 @@ resume/CV_Sanya_Choi_EN.pdf`;
 
             // Add command to output
             const commandLine = document.createElement('div');
-            commandLine.className = 'terminal-line';
+            commandLine.className = 'terminal-line terminal-command-line';
             const prompt = document.createElement('span');
             prompt.className = 'terminal-prompt';
-            prompt.textContent = 'sanya@ubuntu:~$';
+            prompt.textContent = 'sanya@ubuntu:~$ ';
+            const commandText = document.createElement('span');
+            commandText.className = 'terminal-command';
+            commandText.textContent = input;
             commandLine.appendChild(prompt);
-            commandLine.append(` ${input}`);
+            commandLine.appendChild(commandText);
             terminalOutput.appendChild(commandLine);
 
             // Process command
@@ -467,9 +470,8 @@ resume/CV_Sanya_Choi_EN.pdf`;
 
                 if (output !== null && output !== undefined) {
                     const outputLine = document.createElement('div');
-                    outputLine.className = 'terminal-line';
+                    outputLine.className = 'terminal-line terminal-output-line';
                     outputLine.textContent = output;
-                    outputLine.style.whiteSpace = 'pre-wrap';
                     terminalOutput.appendChild(outputLine);
                 }
             }
