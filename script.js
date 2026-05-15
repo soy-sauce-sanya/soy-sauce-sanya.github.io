@@ -397,27 +397,12 @@ function setupTerminal() {
             return `Available commands:
   help          - Show this help message
   about         - Information about Sanya
-  resume        - Show resume file
-  projects      - Show projects
-  side-projects - Show projects
   contact       - Display contact information
   clear         - Clear terminal
-  date          - Show current date and time
-  echo          - Echo back text
   ls            - List available sections`;
         },
         about: () => {
             return getAboutInfoFromWindow();
-        },
-        resume: () => {
-            return `Resume PDF:
-resume/CV_Sanya_Choi_EN.pdf`;
-        },
-        skills: () => {
-            return commands.resume();
-        },
-        projects: () => {
-            return getProjectsInfoFromWindow();
         },
         contact: () => {
             return getContactInfoFromWindow();
@@ -426,15 +411,10 @@ resume/CV_Sanya_Choi_EN.pdf`;
             terminalOutput.innerHTML = '';
             return null;
         },
-        date: () => {
-            return new Date().toString();
-        },
         ls: () => {
             return getDesktopSectionNames().join('  ');
         }
     };
-
-    commands['side-projects'] = commands.projects;
 
     terminalInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
@@ -457,12 +437,9 @@ resume/CV_Sanya_Choi_EN.pdf`;
             if (input) {
                 const parts = input.split(' ');
                 const cmd = parts[0].toLowerCase();
-                const args = parts.slice(1);
 
                 let output;
-                if (cmd === 'echo') {
-                    output = args.join(' ');
-                } else if (commands[cmd]) {
+                if (commands[cmd]) {
                     output = commands[cmd]();
                 } else if (cmd) {
                     output = `Command not found: ${cmd}. Type 'help' for available commands.`;
