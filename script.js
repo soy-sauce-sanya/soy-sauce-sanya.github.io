@@ -291,6 +291,99 @@ function updateActivitiesGrid() {
     });
 }
 
+function getDesktopSectionNames() {
+    return Array.from(document.querySelectorAll('.desktop-icon'))
+        .map(icon => icon.getAttribute('data-window'))
+        .filter(Boolean);
+}
+
+function getContactInfoFromWindow() {
+    const contactWindow = document.getElementById('contact-window');
+    if (!contactWindow) {
+        return 'Contact information is not available.';
+    }
+
+    const contactItems = Array.from(contactWindow.querySelectorAll('.contact-item'));
+    const contactLines = contactItems.map(item => {
+        const label = item.querySelector('h3')?.textContent.trim();
+        const valueElement = item.querySelector('a, p');
+        const value = valueElement?.textContent.trim();
+
+        return label && value ? `${label}: ${value}` : null;
+    }).filter(Boolean);
+
+    const socialLines = Array.from(contactWindow.querySelectorAll('.social-link')).map(link => {
+        const label = link.getAttribute('title')?.trim();
+        const href = link.getAttribute('href')?.trim();
+        const displayHref = href?.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+
+        return label && displayHref ? `${label}: ${displayHref}` : null;
+    }).filter(Boolean);
+
+    const sections = ['Contact Information:'];
+
+    if (contactLines.length) {
+        sections.push(contactLines.join('\n'));
+    }
+
+    if (socialLines.length) {
+        sections.push('', socialLines.join('\n'));
+    }
+
+    return sections.join('\n');
+}
+
+function getAboutInfoFromWindow() {
+    const aboutWindow = document.getElementById('about-window');
+    if (!aboutWindow) {
+        return 'About information is not available.';
+    }
+
+    const heading = aboutWindow.querySelector('.about-text h2')?.textContent.trim();
+    const paragraphs = Array.from(aboutWindow.querySelectorAll('.about-text p'))
+        .map(paragraph => paragraph.textContent.trim().replace(/\s+/g, ' '))
+        .filter(Boolean);
+
+    return [heading, ...paragraphs].filter(Boolean).join('\n\n');
+}
+
+function getProjectsInfoFromWindow() {
+    const projectCards = Array.from(document.querySelectorAll('#side-projects-window .project-card'));
+    if (!projectCards.length) {
+        return 'No projects are available.';
+    }
+
+    const projects = projectCards.map((card, index) => {
+        const title = card.querySelector('.project-info h3')?.textContent.trim();
+        const description = card.querySelector('.project-info p')?.textContent.trim().replace(/\s+/g, ' ');
+        const tags = Array.from(card.querySelectorAll('.project-tags .tag'))
+            .map(tag => tag.textContent.trim())
+            .filter(Boolean);
+        const links = Array.from(card.querySelectorAll('.project-info a, .project-image a'))
+            .map(link => link.getAttribute('href')?.trim())
+            .filter(Boolean);
+        const uniqueLinks = Array.from(new Set(links));
+
+        const lines = [`${index + 1}. ${title || 'Untitled Project'}`];
+
+        if (description) {
+            lines.push(`   ${description}`);
+        }
+
+        if (tags.length) {
+            lines.push(`   Tags: ${tags.join(', ')}`);
+        }
+
+        uniqueLinks.forEach(link => {
+            lines.push(`   Link: ${link}`);
+        });
+
+        return lines.join('\n');
+    });
+
+    return `Featured Projects:\n${projects.join('\n\n')}`;
+}
+
 // Terminal functionality
 function setupTerminal() {
     const terminalInput = document.getElementById('terminalInput');
@@ -302,50 +395,32 @@ function setupTerminal() {
     const commands = {
         help: () => {
             return `Available commands:
-  help       - Show this help message
-  about      - Information about Sanya
-  resume     - List technical skills
-  projects   - Show projects
-  contact    - Display contact information
-  clear      - Clear terminal
-  date       - Show current date and time
-  echo       - Echo back text
-  ls         - List available sections`;
+  help          - Show this help message
+  about         - Information about Sanya
+  resume        - Show resume file
+  projects      - Show projects
+  side-projects - Show projects
+  contact       - Display contact information
+  clear         - Clear terminal
+  date          - Show current date and time
+  echo          - Echo back text
+  ls            - List available sections`;
         },
         about: () => {
-            return `Hi! My name is Sanya.
-I'm an AI engineer and I'm passionate about robotics.
-I'm coming from Uzbekistan and I'm currently working in China.
-I have graduated from Tsinghua University.`;
+            return getAboutInfoFromWindow();
         },
         resume: () => {
-            return `Technical Skills:
-• Frontend: HTML, CSS, JavaScript, React, Vue.js
-• Backend: Node.js, Python, PHP
-• Databases: MySQL, PostgreSQL, MongoDB
-• Tools: Git, GitHub, GitLab, Figma, Adobe XD`;
+            return `Resume:
+resume/CV_Sanya_Choi_EN.pdf`;
         },
         skills: () => {
-            return `Technical Skills:
-• Frontend: HTML, CSS, JavaScript, React, Vue.js
-• Backend: Node.js, Python, PHP
-• Databases: MySQL, PostgreSQL, MongoDB
-• Tools: Git, GitHub, GitLab, Figma, Adobe XD`;
+            return commands.resume();
         },
         projects: () => {
-            return `Featured Projects:
-1. Anki Deck TTS (HTML, CSS, Python)
-   Web: https://soy-sauce-sanya.github.io/ankideck-tts/
-   Repo: https://github.com/soy-sauce-sanya/ankideck-tts`;
+            return getProjectsInfoFromWindow();
         },
         contact: () => {
-            return `Contact Information:
-Email: your.email@example.com
-Phone: +1 (234) 567-890
-Location: Your City, Country
-
-GitHub: github.com/soy-sauce-sanya
-LinkedIn: linkedin.com/in/tsoy-choi-sanya-aleksandr`;
+            return getContactInfoFromWindow();
         },
         clear: () => {
             terminalOutput.innerHTML = '';
@@ -355,9 +430,11 @@ LinkedIn: linkedin.com/in/tsoy-choi-sanya-aleksandr`;
             return new Date().toString();
         },
         ls: () => {
-            return `about  resume  side-projects  contact`;
+            return getDesktopSectionNames().join('  ');
         }
     };
+
+    commands['side-projects'] = commands.projects;
 
     terminalInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
@@ -366,7 +443,11 @@ LinkedIn: linkedin.com/in/tsoy-choi-sanya-aleksandr`;
             // Add command to output
             const commandLine = document.createElement('div');
             commandLine.className = 'terminal-line';
-            commandLine.innerHTML = `<span class="terminal-prompt">sanya@ubuntu:~$</span> ${input}`;
+            const prompt = document.createElement('span');
+            prompt.className = 'terminal-prompt';
+            prompt.textContent = 'sanya@ubuntu:~$';
+            commandLine.appendChild(prompt);
+            commandLine.append(` ${input}`);
             terminalOutput.appendChild(commandLine);
 
             // Process command
