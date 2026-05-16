@@ -504,13 +504,6 @@ function setupPowerButton() {
 // Keyboard shortcuts
 function setupKeyboardShortcuts() {
     document.addEventListener('keydown', (e) => {
-        // Super key (Windows key) for activities
-        if (e.key === 'Meta') {
-            e.preventDefault();
-            document.getElementById('activitiesOverview').classList.toggle('active');
-            updateActivitiesGrid();
-        }
-
         // Ctrl+Alt+T for terminal
         if (e.ctrlKey && e.altKey && e.key === 't') {
             e.preventDefault();
