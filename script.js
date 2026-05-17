@@ -36,12 +36,6 @@ setInterval(updateClock, 1000);
 
 // Window management functions
 function openWindow(windowId) {
-    // Intercept resume window to open PDF instead
-    if (windowId === 'resume') {
-        window.open('resume/CV_Sanya_Choi_EN.pdf', '_blank', 'noopener,noreferrer');
-        return;
-    }
-
     const targetWindow = document.getElementById(`${windowId}-window`);
     if (!targetWindow) return;
 
